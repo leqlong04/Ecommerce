@@ -1,251 +1,170 @@
-# E-Commerce Full Stack Application
+# 🛒 E-Commerce Full Stack Application
 
-Một ứng dụng thương mại điện tử full-stack được xây dựng với Spring Boot (Backend) và React (Frontend), tích hợp thanh toán Stripe và quản lý đơn hàng toàn diện.
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-brightgreen.svg)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-18.3.1-blue.svg)](https://reactjs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-12+-blue.svg)](https://www.postgresql.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 🚀 Tổng quan
+A modern full-stack e-commerce application built with Spring Boot and React, featuring Stripe payment integration and comprehensive order management.
 
-Đây là một hệ thống e-commerce hoàn chỉnh với các tính năng:
-- Quản lý sản phẩm và danh mục
-- Giỏ hàng và thanh toán
-- Hệ thống xác thực và phân quyền
-- Dashboard quản trị
-- Tích hợp thanh toán Stripe
-- Quản lý đơn hàng và địa chỉ giao hàng
+## ✨ Features
+
+- 🛍️ **Product Management** - CRUD operations for products and categories
+- 🛒 **Shopping Cart** - Add/remove items with real-time updates
+- 💳 **Stripe Payment** - Secure online payment processing
+- 🔐 **JWT Authentication** - Role-based access control (User/Admin/Seller)
+- 📊 **Admin Dashboard** - Complete management interface
+- 📦 **Order Management** - Track order status and history
+- 🏠 **Address Management** - Multiple shipping addresses
+- 📱 **Responsive Design** - Mobile-first approach
 
 ## 🛠️ Tech Stack
 
 ### Backend
-- **Java 24**
-- **Spring Boot 3.5.3**
-- **Spring Security** - Xác thực và phân quyền
-- **Spring Data JPA** - ORM
-- **PostgreSQL** - Cơ sở dữ liệu chính
-- **JWT** - Token-based authentication
-- **Stripe API** - Thanh toán trực tuyến
-- **Lombok** - Giảm boilerplate code
-- **ModelMapper** - Object mapping
-- **SpringDoc OpenAPI** - API documentation
+- **Java 24** | **Spring Boot 3.5.3** | **Spring Security**
+- **PostgreSQL** | **JPA/Hibernate** | **JWT**
+- **Stripe API** | **Lombok** | **ModelMapper**
 
 ### Frontend
-- **React 18.3.1**
-- **Vite** - Build tool
-- **Redux Toolkit** - State management
-- **React Router DOM** - Routing
-- **Tailwind CSS** - Styling
-- **Material-UI (MUI)** - UI components
-- **Axios** - HTTP client
-- **React Hook Form** - Form handling
-- **Stripe React** - Payment integration
-- **React Hot Toast** - Notifications
+- **React 18** | **Vite** | **Redux Toolkit**
+- **Tailwind CSS** | **Material-UI** | **Axios**
+- **React Router** | **React Hook Form** | **Stripe React**
 
-## 📁 Cấu trúc Project
+## 🚀 Quick Start
 
-```
-spring-boot-course-main/
-├── ecom-frontend/          # React Frontend
-│   ├── src/
-│   │   ├── components/     # React components
-│   │   │   ├── admin/      # Admin dashboard components
-│   │   │   ├── auth/       # Authentication components
-│   │   │   ├── cart/       # Shopping cart components
-│   │   │   ├── checkout/   # Checkout flow components
-│   │   │   ├── home/       # Home page components
-│   │   │   ├── products/   # Product listing components
-│   │   │   └── shared/     # Shared UI components
-│   │   ├── store/          # Redux store và reducers
-│   │   ├── api/            # API configuration
-│   │   └── utils/          # Utility functions
-│   └── package.json
-├── sb-ecom/                # Spring Boot Backend
-│   ├── src/main/java/com/ecommerce/project/
-│   │   ├── controller/     # REST Controllers
-│   │   ├── model/          # JPA Entities
-│   │   ├── service/        # Business logic
-│   │   ├── repository/     # Data access layer
-│   │   ├── security/       # Security configuration
-│   │   └── payload/        # DTOs
-│   └── pom.xml
-└── README.md
-```
+### Prerequisites
+- Java 24+, Node.js 18+, PostgreSQL 12+, Maven 3.6+
 
-## 🚀 Cài đặt và Chạy Project
+### Installation
 
-### Yêu cầu hệ thống
-- Java 24+
-- Node.js 18+
-- PostgreSQL 12+
-- Maven 3.6+
-
-### Backend Setup
-
-1. **Clone repository**
+1. **Clone & Setup Database**
 ```bash
 git clone <repository-url>
 cd spring-boot-course-main
+createdb ecommerce
 ```
 
-2. **Cấu hình Database**
-```sql
--- Tạo database PostgreSQL
-CREATE DATABASE ecommerce;
-```
-
-3. **Cấu hình application.properties**
+2. **Configure Environment**
 ```properties
-# Cập nhật thông tin database trong sb-ecom/src/main/resources/application.properties
+# sb-ecom/src/main/resources/application.properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/ecommerce
 spring.datasource.username=your_username
 spring.datasource.password=your_password
-```
-
-4. **Cấu hình Stripe**
-```properties
-# Thêm Stripe secret key
 stripe.secret.key=your_stripe_secret_key
 ```
 
-5. **Chạy Backend**
-```bash
-cd sb-ecom
-mvn spring-boot:run
-```
-
-Backend sẽ chạy tại: `http://localhost:8080`
-
-### Frontend Setup
-
-1. **Cài đặt dependencies**
-```bash
-cd ecom-frontend
-npm install
-```
-
-2. **Cấu hình environment**
-Tạo file `.env` trong thư mục `ecom-frontend`:
 ```env
+# ecom-frontend/.env
 VITE_BACK_END_URL=http://localhost:8080
 VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 ```
 
-3. **Chạy Frontend**
+3. **Run Application**
 ```bash
-npm run dev
+# Backend
+cd sb-ecom && mvn spring-boot:run
+
+# Frontend (new terminal)
+cd ecom-frontend && npm install && npm run dev
 ```
 
-Frontend sẽ chạy tại: `http://localhost:5173`
+**Access:** Frontend: `http://localhost:5173` | Backend: `http://localhost:8080` | API Docs: `http://localhost:8080/swagger-ui.html`
 
-## 🔧 Cấu hình Database
+## 📁 Project Structure
 
-### Các bảng chính:
-- **users** - Thông tin người dùng
-- **roles** - Vai trò người dùng (USER, ADMIN, SELLER)
-- **products** - Sản phẩm
-- **categories** - Danh mục sản phẩm
-- **cart** - Giỏ hàng
-- **cart_items** - Chi tiết giỏ hàng
-- **orders** - Đơn hàng
-- **order_items** - Chi tiết đơn hàng
-- **addresses** - Địa chỉ giao hàng
-- **payments** - Thông tin thanh toán
+```
+spring-boot-course-main/
+├── ecom-frontend/          # React Frontend
+│   ├── src/components/     # UI Components
+│   ├── src/store/         # Redux State Management
+│   └── src/api/           # API Configuration
+├── sb-ecom/               # Spring Boot Backend
+│   ├── src/main/java/com/ecommerce/project/
+│   │   ├── controller/    # REST Controllers
+│   │   ├── model/         # JPA Entities
+│   │   ├── service/       # Business Logic
+│   │   ├── repository/    # Data Access
+│   │   └── security/      # JWT Security
+│   └── pom.xml
+└── README.md
+```
 
-## 📋 Tính năng chính
+## 🔧 Key APIs
 
-### 👤 Người dùng
-- Đăng ký/Đăng nhập
-- Duyệt sản phẩm theo danh mục
-- Tìm kiếm và lọc sản phẩm
-- Thêm sản phẩm vào giỏ hàng
-- Thanh toán với Stripe
-- Quản lý địa chỉ giao hàng
-- Xem lịch sử đơn hàng
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/auth/signin` | User login |
+| `POST` | `/api/auth/signup` | User registration |
+| `GET` | `/api/products` | Get products (paginated) |
+| `POST` | `/api/cart/add` | Add to cart |
+| `POST` | `/api/orders/create` | Create order |
+| `POST` | `/api/payment/create` | Process payment |
 
-### 🛒 Giỏ hàng
-- Thêm/Xóa sản phẩm
-- Cập nhật số lượng
-- Tính toán tổng tiền
-- Lưu trữ local storage
+## 🚀 Deployment
 
-### 💳 Thanh toán
-- Tích hợp Stripe
-- Hỗ trợ nhiều phương thức thanh toán
-- Xác nhận thanh toán
-- Lưu trữ thông tin giao dịch
+### Docker
+```dockerfile
+# Backend
+FROM openjdk:24-jdk-slim
+COPY target/sb-ecom-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app.jar"]
 
-### 👨‍💼 Admin Dashboard
-- Quản lý sản phẩm (CRUD)
-- Quản lý danh mục
-- Quản lý người bán
-- Quản lý đơn hàng
-- Thống kê doanh thu
-- Quản lý người dùng
+# Frontend
+FROM node:18-alpine as build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install && npm run build
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+```
 
-### 🏪 Người bán
-- Thêm sản phẩm mới
-- Quản lý sản phẩm của mình
-- Xem đơn hàng
-- Cập nhật trạng thái đơn hàng
+### Cloud Platforms
+- **Backend:** AWS Elastic Beanstalk, Azure App Service, Google Cloud Run
+- **Frontend:** Vercel, Netlify, AWS S3 + CloudFront
 
-## 🔐 Bảo mật
+## 🧪 Testing
 
-- JWT Authentication
-- Role-based Authorization
+```bash
+# Backend tests
+cd sb-ecom && mvn test
+
+# Frontend tests
+cd ecom-frontend && npm test
+
+# API testing
+# Use included Postman collection
+```
+
+## 🔐 Security Features
+
+- JWT-based authentication
+- Role-based authorization (USER/ADMIN/SELLER)
 - Password encryption
 - CORS configuration
 - Input validation
 - SQL injection prevention
 
-## 📚 API Documentation
+## 📊 Database Schema
 
-API documentation có sẵn tại: `http://localhost:8080/swagger-ui.html`
+Key entities: `users`, `products`, `categories`, `cart`, `orders`, `addresses`, `payments`
 
-### Các endpoint chính:
-- `POST /api/auth/signin` - Đăng nhập
-- `POST /api/auth/signup` - Đăng ký
-- `GET /api/products` - Lấy danh sách sản phẩm
-- `POST /api/cart/add` - Thêm vào giỏ hàng
-- `POST /api/orders/create` - Tạo đơn hàng
-- `POST /api/payment/create` - Tạo thanh toán
+## 🤝 Contributing
 
-## 🚀 Deployment
-
-### Backend (Spring Boot)
-```bash
-cd sb-ecom
-mvn clean package
-java -jar target/sb-ecom-0.0.1-SNAPSHOT.jar
-```
-
-### Frontend (React)
-```bash
-cd ecom-frontend
-npm run build
-# Deploy thư mục dist/ lên hosting
-```
-
-## 🤝 Đóng góp
-
-1. Fork project
-2. Tạo feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
 4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Mở Pull Request
+5. Open Pull Request
 
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## 👥 Tác giả
+## 👥 Author
 
-- **Le Quang Long** - *Initial work* - [GitHub](https://github.com/yourusername)
-
-## 🙏 Acknowledgments
-
-- Spring Boot team
-- React team
-- Stripe team
-- Material-UI team
-- Tất cả các thư viện open source được sử dụng
+**Le Quang Long** - [GitHub](https://github.com/yourusername)
 
 ---
 
-**Lưu ý**: Đây là project học tập, vui lòng cấu hình đúng thông tin database và Stripe keys trước khi chạy.
+**⭐ Star this repo if you find it helpful!**
